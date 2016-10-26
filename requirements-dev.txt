@@ -2,8 +2,8 @@
 --requirement requirements.txt
 
 # Testing
-pytest==2.5.1
-py==1.4.19
+pytest==3.0.3
+py==1.4.31
 mock==1.0.1
 
 # Linting

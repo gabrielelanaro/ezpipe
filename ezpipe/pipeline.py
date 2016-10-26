@@ -20,7 +20,7 @@ class Pipeline:
         if isinstance(start, str):
             self.dsk[end] = (func, start)
         elif isinstance(start, tuple):
-            self.dsk[end] = (func, *start)
+            self.dsk[end] = (func,) + start
         else:
             raise ValueError('first argument must be either tuple or string')
 
