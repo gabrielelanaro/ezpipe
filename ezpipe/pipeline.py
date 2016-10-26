@@ -5,6 +5,7 @@ class Pipeline:
 
     def __init__(self):
         self.dsk = {}
+        self._keys = set()
         self.models = {}
         self.named_steps = {}
 
@@ -19,7 +20,9 @@ class Pipeline:
 
         if isinstance(start, str):
             self.dsk[end] = (func, start)
+            self._keys.add(start)
         elif isinstance(start, tuple):
+            [self._keys.add(k) for k in start]
             self.dsk[end] = (func,) + start
         else:
             raise ValueError('first argument must be either tuple or string')
@@ -81,4 +84,9 @@ class Pipeline:
 
     def display(self):
         from dask.dot import dot_graph
-        return dot_graph(self.dsk)
+        graph = self.dsk.copy()
+        # Retrieve the keys that are not intermediate results
+        sources = self._keys - set(graph.keys())
+        [graph.update({s: None}) for s in sources]
+        data_attributes = {k: {'style': 'filled', 'color': 'gray'} for k in sources}
+        return dot_graph(graph, data_attributes=data_attributes)
