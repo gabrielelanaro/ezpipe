@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Just like sklearn pipelines, but on steroids."""
 
-from ezpipe import metadata
-
+from . import metadata
+from .pipeline import Pipeline
 
 __version__ = metadata.version
 __author__ = metadata.authors[0]
