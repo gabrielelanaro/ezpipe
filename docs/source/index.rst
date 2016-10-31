@@ -5,7 +5,7 @@ Building a machine learning pipeline involves exploring different models, pre an
 
 Here is an example on how to setup a pipeline for sentiment analysis.
 ::
-	from ezpipe import Pipeline
+	from ezpipe import Pipeline, map
     
     p = Pipeline()
     p.add_step('X', 'tokenize', tokenize)
