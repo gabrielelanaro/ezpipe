@@ -27,6 +27,7 @@ Make predictions
 ::
     p.get('sentiment', X=['Good girl', 'Bad girl'])
     # [1, 0]
+
 Contents:
 
 
