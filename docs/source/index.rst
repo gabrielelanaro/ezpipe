@@ -8,9 +8,9 @@ Here is an example on how to setup a pipeline for sentiment analysis.
 	from ezpipe import Pipeline, map
     
     p = Pipeline()
-    p.add_step('X', 'tokenize', tokenize)
-    p.add_transformer('tokenize', 'vectorized', CountVectorizer())
-    p.add_model('vectorized', 'sentiment', LogisticRegression())
+    p.add_step('X', 'tokenize', map(tokenize))
+    p.add_transformer('tokenize', 'vectorized', CountVectorizer(), name='vec')
+    p.add_model('vectorized', 'sentiment', LogisticRegression(), name='reg')
 
 
 Train the pipeline
@@ -19,8 +19,14 @@ Train the pipeline
     X = ['Good boy',
          'Bad boy']
     y = [1, 0]
-	p.fit('vec', X=X, y=y)
-    p.get('sentiment', X=)
+    p.fit('vec', X=X)
+	p.fit('reg', X=X, sentiment=y)
+
+Make predictions
+
+::
+    p.get('sentiment', X=['Good girl', 'Bad girl'])
+    # [1, 0]
 Contents:
 
 
