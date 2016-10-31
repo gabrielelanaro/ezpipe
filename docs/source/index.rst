@@ -17,7 +17,7 @@ Train the pipeline
 
 ::
     ['Good boy',
-     'Bad boy' ]
+     'Bad boy']
 	p.fit('vec', X=X, y=y)
     p.get('sentiment', X=)
 Contents:
