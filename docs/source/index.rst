@@ -16,8 +16,9 @@ Here is an example on how to setup a pipeline for sentiment analysis.
 Train the pipeline
 
 ::
-    ['Good boy',
-     'Bad boy']
+    X = ['Good boy',
+         'Bad boy']
+    y = [1, 0]
 	p.fit('vec', X=X, y=y)
     p.get('sentiment', X=)
 Contents:
